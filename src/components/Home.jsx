@@ -5,19 +5,20 @@ import Hero from "./Hero";
 
 function Home() {
   return (
-    <div>
+    <main>
+      {/* Sección principal tipo banner */}
       <Hero />
 
-      {/* Catálogo */}
-      <section
-        id="catalogo"
-        className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-      >
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+      {/* Catálogo en inicio */}
+      <section id="catalogo" className="px-6 py-10">
+        <h2 className="text-2xl font-bold mb-6 text-center">Lo más nuevo 🍒</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
       </section>
-    </div>
+    </main>
   );
 }
 

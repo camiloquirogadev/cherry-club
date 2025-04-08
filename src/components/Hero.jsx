@@ -15,14 +15,17 @@ const Hero = () => {
           <p className="mt-4 text-gray-600 text-lg">
             Remeras, tazas y stickers con diseños únicos. ¡Creamos algo especial para vos!
           </p>
-          <a href="#productos">
+          
+            <Link to="/productos">
+              <button className="btn">Ver productos</button>
+            </Link>
             <button className="mt-6 bg-pink-600 hover:bg-pink-700 text-white font-semibold px-6 py-3 rounded-full transition duration-300">
               Ver productos
             </button>
-          </a>
+
         </div>
 
-         {/* Imagen */}
+        {/* Imagen */}
         <div className="flex-1 flex justify-center">
           <img
             src={heroImg}
