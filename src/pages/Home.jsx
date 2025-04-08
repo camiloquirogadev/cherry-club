@@ -11,6 +11,7 @@ function Home() {
 
       {/* Catálogo: Productos */}
       <section id="catalogo" className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {/* Recorremos los productos y renderizamos una tarjeta para cada uno */}
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

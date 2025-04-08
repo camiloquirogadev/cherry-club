@@ -21,6 +21,12 @@ a {
 button {
   @apply transition duration-200;
 }
+/* Añadir en src/index.css */
+.slider-container {
+  width: 100%;
+  max-width: 1200px;  /* Ajusta este valor según lo que necesites */
+  margin: 0 auto;
+}
 
 /* Añadir un estilo básico para el hero */
 section.bg-pink-100 {
