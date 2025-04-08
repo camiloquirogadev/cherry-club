@@ -7,6 +7,7 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Footer from "./components/Footer";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
         <Footer />
+        <WhatsAppButton />
       </Router>
     </CartProvider>
   );
