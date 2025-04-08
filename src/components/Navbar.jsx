@@ -8,8 +8,16 @@ function Navbar() {
 
   return (
     <nav className="bg-pink-100 px-6 py-4 shadow flex justify-between items-center">
-      <Link to="/" className="text-2xl font-bold text-pink-600">
-        🍒 Cherry Club
+   <Link to="/" className="text-2xl font-bold text-pink-600 flex items-center">
+        {/* Reemplazar con el logo */}
+        <img
+          src="/img/logo.png"  // Asegúrate de que esta ruta sea correcta
+          alt="Cherry Club"
+          className="h-10 w-auto"  // Ajusta el tamaño del logo según necesites
+        />
+      </Link>  
+       <Link to="/contacto" className="text-pink-800 font-medium hover:underline">
+        Contacto
       </Link>
       <Link
         to="/carrito"
@@ -22,9 +30,7 @@ function Navbar() {
           </span>
         )}
       </Link>
-      <Link to="/contacto" className="text-pink-800 font-medium hover:underline">
-        Contacto
-      </Link>
+   
     </nav>
   );
 }
