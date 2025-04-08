@@ -18,21 +18,12 @@ a {
   @apply text-pink-700 hover:underline;
 }
 
-button {
-  @apply transition duration-200;
-}
-/* Añadir en src/index.css */
-.slider-container {
-  width: 100%;
-  max-width: 1200px;  /* Ajusta este valor según lo que necesites */
-  margin: 0 auto;
+
+.button {
+  @apply transition duration-300 ease-in-out transform hover:scale-105 hover:bg-pink-500;
 }
 
-/* Añadir un estilo básico para el hero */
-section.bg-pink-100 {
-  background-color: #fce7f3;  /* Color de fondo para el hero */
+.card {
+  @apply transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg;
 }
 
-section#catalogo {
-  padding: 3rem 1.5rem;  /* Espaciado del catálogo de productos */
-}
