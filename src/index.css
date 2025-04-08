@@ -1,5 +1,4 @@
-
-/* Tailwind */
+/* Asegurémonos de que Tailwind esté cargando los estilos */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,7 +13,7 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* Otras personalizaciones */
+/* Estilos globales de enlaces y botones */
 a {
   @apply text-pink-700 hover:underline;
 }
@@ -23,10 +22,11 @@ button {
   @apply transition duration-200;
 }
 
-a {
-  @apply text-pink-700 hover:underline;
+/* Añadir un estilo básico para el hero */
+section.bg-pink-100 {
+  background-color: #fce7f3;  /* Color de fondo para el hero */
 }
 
-button {
-  @apply transition duration-200;
+section#catalogo {
+  padding: 3rem 1.5rem;  /* Espaciado del catálogo de productos */
 }
