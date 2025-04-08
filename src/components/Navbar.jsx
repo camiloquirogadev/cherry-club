@@ -22,6 +22,9 @@ function Navbar() {
           </span>
         )}
       </Link>
+      <Link to="/contacto" className="text-pink-800 font-medium hover:underline">
+        Contacto
+      </Link>
     </nav>
   );
 }
