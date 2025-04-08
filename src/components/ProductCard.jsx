@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
+ 
 function ProductCard({ product }) {
   return (
     <motion.div
@@ -24,7 +24,7 @@ function ProductCard({ product }) {
         className="mt-auto"
       >
         <Link
-          to={`/producto/${product.id}`} // ✅ corregido acá
+          to={`/producto/${product.id}`}
           className="block bg-pink-500 hover:bg-pink-600 text-white py-2 px-4 rounded text-center"
         >
           Ver producto
