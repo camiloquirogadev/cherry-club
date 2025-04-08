@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🎨 Estilos globales para Cherry Club */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-pink-50 text-gray-800 font-sans;
+  font-family: 'Inter', sans-serif;
+}
+
+a {
+  @apply text-pink-700 hover:underline;
+}
+
+button {
+  @apply transition duration-200;
+}

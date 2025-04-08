@@ -1,0 +1,24 @@
+[
+    {
+      "id": "1",
+      "name": "Remera personalizada",
+      "description": "Remera blanca con sublimado personalizado",
+      "price": 5500,
+      "image": "/img/remera1.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Taza mágica",
+      "description": "Taza negra que revela imagen con calor",
+      "price": 4200,
+      "image": "/img/taza1.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Vinilo decorativo",
+      "description": "Vinilo para pared o notebook con diseño único",
+      "price": 2500,
+      "image": "/img/vinilo1.jpg"
+    }
+  ]
+  
