@@ -4,6 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Restaura la ruta que guardó 404.html al refrescar una subruta en GitHub Pages -->
+  <script>
+    (function () {
+      var r = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (r && r !== location.href) history.replaceState(null, null, r);
+    })();
+  </script>
+
   <title>Cherry Club 🍒 · Personalizados — Remeras, Medias, Stickers y más</title>
   <meta name="description"
     content="Cherry Club: remeras, medias, stickers, chapitas y encendedores personalizados (sublimados). Pedidos mayoristas y minoristas. Envíos a todo Argentina desde Moreno, Buenos Aires." />

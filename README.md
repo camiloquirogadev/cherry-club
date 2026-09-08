@@ -1,102 +1,80 @@
-# Cherry Club 🍒 — Tienda de personalizados
+# Cherry Club
 
-Tienda online (React + Vite + Tailwind + Framer Motion) con estética **dark emo**.
-Catálogo con filtros por rubro, carrito y pedido por **WhatsApp** (+ checkout online opcional).
+Tienda online de productos personalizados (remeras, medias, stickers, chapitas, encendedores).
+Frontend en React + Vite + Tailwind, con estética dark. El catálogo sale de un JSON, así que
+la tienda anda sin backend; Supabase es opcional y solo se usa para el panel de administración.
 
-Info real desde Instagram [@tienda.cherry.club](https://www.instagram.com/tienda.cherry.club/) ·
-WhatsApp **11 6806-0403**.
+Es un proyecto real para un emprendimiento ([@tienda.cherry.club](https://www.instagram.com/tienda.cherry.club/)),
+no un demo.
 
 ## Correr en local
+
 ```bash
 npm install
 npm run dev
 ```
-Abre en http://localhost:5173 (o el puerto que asigne Vite).
 
-## Estructura
+Abre en `http://localhost:5173`.
+
+## Cómo está armado
+
 ```
 src/
-├── data/products.json      # 👈 catálogo (nombre, precio, rubro, imagen). Editá esto.
-├── utils/placeholder.js     # emoji por rubro + placeholder de fotos + formato de precio
-├── components/              # Navbar, Home (hero + catálogo), ProductCard, Footer, WhatsAppButton, ContactForm
-├── pages/                   # Product, Cart, Checkout, ContactPage
-└── context/CartContext.jsx  # estado del carrito
-public/img/                  # 👈 poné acá las fotos (ver LEER-poner-fotos-aca.txt)
+  data/products.json     catálogo (nombre, precio, rubro, imagen)
+  components/            Navbar, Home, ProductCard, Footer, WhatsAppButton, ContactForm
+  pages/                 Product, Cart, Checkout, ContactPage, Admin
+  context/CartContext    estado del carrito
+  lib/shipping.js        estimador de envío por zona (fallback)
+public/img/              fotos de los productos
 ```
 
-## Cargar fotos
-1. Guardá cada foto en `public/img/` con el nombre que figura en `products.json`
-   (ej. `remera-01.jpg`). Ver `public/img/LEER-poner-fotos-aca.txt`.
-2. Si falta una foto, se muestra un placeholder con el emoji del rubro (no rompe nada).
+Rutas: `/` (inicio), `/tienda` (catálogo con filtros), `/contacto` (form que abre WhatsApp),
+`/admin` (panel de la dueña, necesita Supabase).
 
-## Editar productos
-Todo en `src/data/products.json`:
-- `name`, `price` (número, `0` ⇒ "A consultar"), `description`, `category`, `featured` (★).
-- Rubros: `remeras, medias, stickers, chapitas, encendedores, ninos, personalizados`.
+## Cargar productos y fotos
 
-## Panel de la dueña (Supabase)
-La tienda funciona con `src/data/products.json` **sin configurar nada**. Para que la dueña
-inicie sesión y cargue/edite productos con fotos, se usa Supabase (gratis):
+El catálogo por defecto es `src/data/products.json`. Cada producto tiene `name`, `price`
+(un `0` se muestra como "A consultar"), `description`, `category` y `featured`. Las fotos van
+en `public/img/` con el mismo nombre que figura en el JSON. Si falta una foto, se muestra un
+placeholder con el emoji del rubro y no se rompe nada.
 
-1. Crear un proyecto en https://supabase.com
-2. En **SQL Editor**, pegar y correr todo `supabase/setup.sql` (crea la tabla, el bucket de fotos, las políticas y carga los 12+ productos actuales).
-3. En **Authentication → Users**, crear el usuario de la dueña (email + contraseña).
-4. Copiar `.env.example` a `.env` y completar `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY` (están en **Project Settings → API**).
-5. `npm run dev`. La dueña entra en **/admin**, inicia sesión y administra productos (crear, editar, borrar, subir fotos).
+Las cards tienen un efecto sublimado → sin sublimar al pasar el mouse; se activa con el campo
+`blank` en el producto.
 
-Sin `.env`, `/admin` avisa que falta configurar y la tienda sigue mostrando los productos locales.
+## Panel de administración (Supabase, opcional)
 
-## Páginas
-- `/` inicio (hero + tienda + clientes + nosotros)
-- `/tienda` catálogo completo con filtros
-- `/#clientes` trabajos para empresas + testimonios
-- `/contacto` formulario (abre WhatsApp)
-- `/admin` panel de la dueña (requiere Supabase)
+Para que la dueña cargue y edite productos desde `/admin` sin tocar el código:
 
-## Tipografías
-Título **Pirata One** (gótica) · texto **Space Grotesk** · frases **Cormorant Garamond**.
+1. Crear un proyecto en [supabase.com](https://supabase.com).
+2. Correr `supabase/setup.sql` en el SQL Editor (crea la tabla, el bucket de fotos, las
+   políticas y carga los productos actuales).
+3. Crear el usuario de la dueña en Authentication → Users.
+4. Copiar `.env.example` a `.env` y completar `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY`.
 
-## Antes/después (sin sublimar → sublimado)
-Las cards muestran el producto sublimado y, al pasar el mouse, la versión **sin sublimar**
-(estilo Tiendanube). Se activa con el campo `"blank"` en `products.json` (o `blank_url` en Supabase).
-Hoy tienen blank: remeras, remera niños y vaso. Para sumar más, poné la foto en blanco en
-`public/img` y completá `blank`. (MercadoLibre bloquea el scraping automático, así que los blanks
-actuales son de stock — reemplazalos por los de tu proveedor.)
+Sin `.env`, `/admin` avisa que falta configurar y la tienda sigue funcionando con el JSON local.
 
-## Pagos
-- **WhatsApp + Transferencia:** funcionan sin backend (flujo principal). El checkout muestra CBU/alias.
-- **MercadoPago (tarjeta en el sitio):** Edge Function `supabase/functions/crear-preferencia`
-  (Checkout Pro). Deploy: `supabase functions deploy crear-preferencia`. Secret:
-  `MP_ACCESS_TOKEN` (y opcional `MP_BACK_URL`). Hasta configurarlo, el botón avisa que el pago
-  con tarjeta no está activo y sugiere WhatsApp/transferencia (no rompe).
+## Pagos y envío
 
-## Envío — Correo Argentino (integrado)
-Cherry Club despacha desde **Moreno (CP 1744)** a todo el país.
+El flujo principal es pedido por WhatsApp con transferencia (CBU/alias en el checkout), sin
+backend. Como opcionales hay dos Edge Functions de Supabase:
 
-- **Cotización real:** Edge Function de Supabase `supabase/functions/cotizar-envio` que llama la
-  API *Mi Correo* del Correo Argentino. Deploy: `supabase functions deploy cotizar-envio`.
-  Secrets (Supabase → Edge Functions → Secrets): `CORREO_USER`, `CORREO_PASS`,
-  `CORREO_CUSTOMER_ID` y `CORREO_CP_ORIGIN=1744`. El checkout muestra domicilio/sucursal con precio real.
-- **Fallback:** si la función no está configurada, el checkout usa el estimador por zona
-  (`src/lib/shipping.js`, tarifas editables en `RATES`). También hay **retiro en persona (gratis)**.
+- `crear-preferencia`: MercadoPago Checkout Pro (tarjeta en el sitio). Sin configurar, el botón
+  sugiere WhatsApp/transferencia.
+- `cotizar-envio`: cotización real de Correo Argentino desde Moreno (CP 1744). Si no está,
+  el checkout usa el estimador por zona de `src/lib/shipping.js` o el retiro en persona.
 
-## SEO y marketing (ya integrado)
-- **Meta + keywords locales** (Moreno / Buenos Aires) y **Open Graph** en `index.html`.
-- **Datos estructurados**: schema `Store` en `index.html` y `Product` dinámico por producto → Google puede mostrar precio.
-- **`sitemap.xml`** + **`robots.txt`** en `public/`. Regenerá el sitemap si agregás productos.
-- **Títulos por página** y **meta description por producto**.
-- **Botones de compartir** (Compartir nativo / WhatsApp / copiar link) en cada producto.
-- **Píxeles / analítica**: pegá tus IDs en `index.html` → `window.CHERRY_IDS = { ga4, metaPixel, tiktok }`.
-  Con IDs vacíos no carga nada. Con IDs, se activan Google Analytics 4, Meta Pixel y TikTok Pixel (para medir y hacer ads/retargeting).
+## SEO
 
-**Pasos manuales recomendados:** dar de alta el sitio en **Google Search Console** (subir el sitemap),
-crear el **catálogo de Instagram/Facebook** (Commerce Manager) y **Google Merchant** para listar productos.
+`index.html` incluye meta tags locales, Open Graph y datos estructurados (schema `Store` y
+`Product` por producto). Hay `sitemap.xml` y `robots.txt` en `public/`. Los IDs de analítica
+(GA4, Meta, TikTok) se pegan en `window.CHERRY_IDS` dentro de `index.html`; vacíos no cargan nada.
 
-## Deploy (GitHub Pages)
-```bash
-npm run deploy   # build + gh-pages -d dist
-```
-`vite.config.js` usa `base: /cherry-club/` solo en build, y el Router respeta ese basename,
-así que las rutas funcionan tanto en local (`/`) como en Pages (`/cherry-club/`).
-```
-```
+## Deploy
+
+Se publica en GitHub Pages con el workflow de `.github/workflows/deploy.yml`: cada push a `main`
+buildea y despliega. En el repo hay que dejar Settings → Pages → Source en "GitHub Actions" una
+sola vez.
+
+Detalle: en build, `vite.config.js` usa `base: /cherry-club/` y el Router toma ese basename, así
+que las rutas andan igual en local (`/`) que en Pages (`/cherry-club/`). El `public/404.html`
+redirige las subrutas al index para que refrescar no tire error.

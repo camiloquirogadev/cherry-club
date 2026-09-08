@@ -1,0 +1,23 @@
+FOTOS DE PRODUCTOS — Cherry Club
+
+Las fotos ig-01..ig-12 se bajaron del Instagram real (@tienda.cherry.club) y ya están
+asignadas en src/data/products.json. Mapeo actual:
+
+  ig-01.webp  → Encendedores AFA & Maradona
+  ig-02.webp  → Combo escolar personalizado (Stitch)
+  ig-04.webp  → Pack stickers bandas
+  ig-05.webp  → Remera "Nunca fui lo que querían de mí"
+  ig-06.webp  → Medias personalizadas (KPOP)
+  ig-07.jpg   → Combo personalizado a medida (arte Cherry Club)
+  ig-08.jpg   → Remera estampada a pedido (look)
+  ig-09.webp  → Pack stickers Taylor Swift
+  ig-10.webp  → Pack stickers Pride
+  ig-11.jpg   → Remera niños personalizada (chanchito)
+  ig-12.jpg   → Encendedores cute cherry
+
+Chapitas (id 7) todavía sin foto: muestra un placeholder con emoji hasta que subas una.
+
+CÓMO CAMBIAR / AGREGAR FOTOS
+- Guardá la imagen acá en /public/img (cuadrada 1:1 se ve mejor).
+- En src/data/products.json poné el nombre en "image", ej: "/img/mi-foto.jpg".
+- Si dejás "image": "" se muestra el placeholder del rubro (no rompe nada).
