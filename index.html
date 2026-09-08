@@ -1,21 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
-  <title>Cherry Club - Remeras, Tazas y Stickers Personalizados</title>
-  <meta name="description"
-    content="Tienda online de productos personalizados. Diseño original en remeras, tazas, stickers y más. Envíos a toda Argentina.">
-  <meta property="og:title" content="Cherry Club - Personalizados únicos">
-  <meta property="og:description" content="Descubrí productos únicos y hechos con amor.">
-  <meta property="og:image" content="https://tienda.cherry.club/og-image.jpg">
-  <meta property="og:url" content="https://tienda.cherry.club">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="/favicon.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cherry Club</title>
+  <title>Cherry Club 🍒 · Personalizados — Remeras, Medias, Stickers y más</title>
+  <meta name="description"
+    content="Cherry Club: remeras, medias, stickers, chapitas y encendedores personalizados (sublimados). Pedidos mayoristas y minoristas. Envíos a todo Argentina desde Moreno, Buenos Aires." />
+  <meta name="keywords"
+    content="personalizados, sublimados, remeras personalizadas, medias personalizadas, stickers personalizados, chapitas, encendedores personalizados, regalos personalizados, merch para empresas, Moreno, Buenos Aires, Argentina, Cherry Club" />
+  <meta name="author" content="Cherry Club" />
+  <meta name="robots" content="index, follow" />
+  <meta name="geo.region" content="AR-B" />
+  <meta name="geo.placename" content="Moreno, Buenos Aires" />
+  <link rel="canonical" href="https://camiloquirogadev.github.io/cherry-club/" />
+
+  <!-- Open Graph / redes -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Cherry Club" />
+  <meta property="og:title" content="Cherry Club 🍒 · Personalizados con actitud" />
+  <meta property="og:description" content="Remeras, medias, stickers, chapitas y encendedores personalizados. Envíos a toda Argentina." />
+  <meta property="og:image" content="https://camiloquirogadev.github.io/cherry-club/img/ig-05.webp" />
+  <meta property="og:url" content="https://camiloquirogadev.github.io/cherry-club/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cherry Club 🍒 · Personalizados" />
+  <meta name="twitter:description" content="Remeras, medias, stickers y más, personalizados. Envíos a toda Argentina." />
+  <meta name="twitter:image" content="https://camiloquirogadev.github.io/cherry-club/img/ig-05.webp" />
+
+  <meta name="theme-color" content="#08070a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%92%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Space+Grotesk:wght@300;400;500;700&family=Cormorant+Garamond:ital@0;1&display=swap"
+    rel="stylesheet" />
+
+  <!-- Datos estructurados (Google) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Cherry Club",
+    "description": "Personalizados y sublimados: remeras, medias, stickers, chapitas, encendedores y más. Mayorista y minorista.",
+    "image": "https://camiloquirogadev.github.io/cherry-club/img/ig-05.webp",
+    "url": "https://camiloquirogadev.github.io/cherry-club/",
+    "telephone": "+5491168060403",
+    "priceRange": "$$",
+    "areaServed": "AR",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Moreno",
+      "addressRegion": "Buenos Aires",
+      "postalCode": "1744",
+      "addressCountry": "AR"
+    },
+    "sameAs": [
+      "https://www.instagram.com/tienda.cherry.club/",
+      "https://www.tiktok.com/@cherry.club3",
+      "https://www.facebook.com/profile.php?id=61575147095015"
+    ]
+  }
+  </script>
+
+  <!-- Analítica / píxeles: pegá tus IDs acá. Vacío = no carga nada. -->
+  <script>
+    window.CHERRY_IDS = { ga4: "", metaPixel: "", tiktok: "" };
+    (function () {
+      var C = window.CHERRY_IDS || {};
+      // Google Analytics 4
+      if (C.ga4) {
+        var g = document.createElement("script");
+        g.async = true;
+        g.src = "https://www.googletagmanager.com/gtag/js?id=" + C.ga4;
+        document.head.appendChild(g);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag("js", new Date());
+        gtag("config", C.ga4);
+      }
+      // Meta (Facebook) Pixel
+      if (C.metaPixel) {
+        !function (f, b, e, v, n, t, s) {
+          if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+          if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
+          t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+        }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+        fbq("init", C.metaPixel); fbq("track", "PageView");
+      }
+      // TikTok Pixel
+      if (C.tiktok) {
+        !function (w, d, t) {
+          w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || [];
+          ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie"];
+          ttq.setAndDefer = function (e, n) { e[n] = function () { e.push([n].concat(Array.prototype.slice.call(arguments, 0))); }; };
+          for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+          ttq.load = function (e) {
+            var n = "https://analytics.tiktok.com/i18n/pixel/events.js";
+            ttq._i = ttq._i || {}; ttq._i[e] = []; ttq._i[e]._u = n; ttq._t = ttq._t || {}; ttq._t[e] = +new Date;
+            var o = d.createElement("script"); o.type = "text/javascript"; o.async = !0; o.src = n + "?sdkid=" + e;
+            var a = d.getElementsByTagName("script")[0]; a.parentNode.insertBefore(o, a);
+          };
+          ttq.load(C.tiktok); ttq.page();
+        }(window, document, "ttq");
+      }
+    })();
+  </script>
+
+  <style>
+    html, body { background: #08070a; margin: 0; }
+  </style>
 </head>
 
 <body>

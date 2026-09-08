@@ -1,98 +1,114 @@
 [
-    {
-      "id": "1",
-      "name": "Remera personalizada",
-      "description": "Remera blanca con sublimado personalizado",
-      "price": 5500,
-      "image": "/img/remera1.jpg"
-    },
-    {
-      "id": "2",
-      "name": "Taza mágica",
-      "description": "Taza negra que revela imagen con calor",
-      "price": 4200,
-      "image": "/img/taza1.jpg"
-    },
-    {
-      "id": "3",
-      "name": "Vinilo decorativo",
-      "description": "Vinilo para pared o notebook con diseño único",
-      "price": 2500,
-      "image": "/img/vinilo1.jpg"
-    },
-    {
-      "id": "4",
-      "name": "Vinilo decorativo",
-      "description": "Vinilo para pared o notebook con diseño único",
-      "price": 2500,
-      "image": "/img/vinilo1.jpg"
-    },
-      {
-      "id": "5",
-      "name": "Vinilo decorativo",
-      "description": "Vinilo para pared o notebook con diseño único",
-      "price": 2500,
-      "image": "/img/vinilo1.jpg"
-    },   {
-      "id": "6",
-      "name": "Vinilo decorativo",
-      "description": "Vinilo para pared o notebook con diseño único",
-      "price": 2500,
-      "image": "/img/vinilo1.jpg"
-    },  {
-      "id": "7",
-      "name": "Vinilo decorativo",
-      "description": "Vinilo para pared o notebook con diseño único",
-      "price": 2500,
-      "image": "/img/vinilo1.jpg"
-    },   {
-      "id": "8",
-      "name": "Vinilo decorativo",
-      "description": "Vinilo para pared o notebook con diseño único",
-      "price": 2500,
-      "image": "/img/vinilo1.jpg"
-    },   {
-      "id": "9",
-      "name": "Vinilo decorativo",
-      "description": "Vinilo para pared o notebook con diseño único",
-      "price": 2500,
-      "image": "/img/vinilo1.jpg"
-    },   {
-      "id": "10",
-      "name": "Vinilo decorativo",
-      "description": "Vinilo para pared o notebook con diseño único",
-      "price": 2500,
-      "image": "/img/vinilo1.jpg"
-    },    {
-      "id": "11",
-      "name": "Vinilo decorativo",
-      "description": "Vinilo para pared o notebook con diseño único",
-      "price": 2500,
-      "image": "/img/vinilo1.jpg"
-    },    {
-      "id": "12",
-      "name": "Vinilo decorativo",
-      "description": "Vinilo para pared o notebook con diseño único",
-      "price": 2500,
-      "image": "/img/vinilo1.jpg"
-    },    {
-      "id": "13",
-      "name": "Vinilo decorativo",
-      "description": "Vinilo para pared o notebook con diseño único",
-      "price": 2500,
-      "image": "/img/vinilo1.jpg"
-    },    {
-      "id": "14",
-      "name": "Vinilo decorativo",
-      "description": "Vinilo para pared o notebook con diseño único",
-      "price": 2500,
-      "image": "/img/vinilo1.jpg"
-    },    {
-      "id": "15",
-      "name": "Vinilo decorativo",
-      "description": "Vinilo para pared o notebook con diseño único",
-      "price": 2500,
-      "image": "/img/vinilo1.jpg"
-    }
-  ]
-  
+  {
+    "id": "1",
+    "name": "Remera 'Nunca fui lo que querían de mí'",
+    "category": "remeras",
+    "description": "Remera ringer blanca con frase. Estampa de alta duración. Varios talles.",
+    "price": 12000,
+    "image": "/img/ig-05.webp",
+    "blank": "/img/blank-remera.jpg",
+    "featured": true
+  },
+  {
+    "id": "2",
+    "name": "Remera estampada a pedido",
+    "category": "remeras",
+    "description": "Tu diseño o el nuestro — estilo Cherry Club. DTF full color.",
+    "price": 12000,
+    "image": "/img/ig-08.jpg",
+    "blank": "/img/blank-remera.jpg"
+  },
+  {
+    "id": "3",
+    "name": "Medias personalizadas",
+    "category": "medias",
+    "description": "Sublimadas full color, diseño a elección. Ideales para regalar.",
+    "price": 4500,
+    "image": "/img/ig-06.webp",
+    "featured": true
+  },
+  {
+    "id": "4",
+    "name": "Pack stickers bandas x10",
+    "category": "stickers",
+    "description": "Vinilo resistente al agua. Rock, pop y más, cortados a medida.",
+    "price": 3000,
+    "image": "/img/ig-04.webp",
+    "featured": true
+  },
+  {
+    "id": "5",
+    "name": "Pack stickers Taylor Swift",
+    "category": "stickers",
+    "description": "Set temático de vinilo. Eras a elección 🩵.",
+    "price": 3500,
+    "image": "/img/ig-09.webp"
+  },
+  {
+    "id": "6",
+    "name": "Pack stickers Pride 🌈",
+    "category": "stickers",
+    "description": "Set orgullo, vinilo resistente al agua.",
+    "price": 3500,
+    "image": "/img/ig-10.webp"
+  },
+  {
+    "id": "7",
+    "name": "Chapitas / pins 38mm",
+    "category": "chapitas",
+    "description": "Prendedor metálico con diseño personalizado. Ideal para eventos y merch.",
+    "price": 1500,
+    "image": "/img/empresa-museo-moderno.jpg"
+  },
+  {
+    "id": "8",
+    "name": "Encendedores AFA & Maradona",
+    "category": "encendedores",
+    "description": "Recargables, con diseños de la Selección y el Diego.",
+    "price": 4000,
+    "image": "/img/ig-01.webp",
+    "featured": true
+  },
+  {
+    "id": "9",
+    "name": "Encendedores cute cherry",
+    "category": "encendedores",
+    "description": "Diseños cherry y clubes. Recargables.",
+    "price": 4000,
+    "image": "/img/ig-12.jpg"
+  },
+  {
+    "id": "10",
+    "name": "Combo escolar personalizado",
+    "category": "ninos",
+    "description": "Mochila, delantal, taza y toalla con nombre y personaje a elección.",
+    "price": 0,
+    "image": "/img/ig-02.webp"
+  },
+  {
+    "id": "11",
+    "name": "Remera niños personalizada",
+    "category": "ninos",
+    "description": "Talles 2 al 14. Personajes y frases a pedido.",
+    "price": 9000,
+    "image": "/img/ig-11.jpg",
+    "blank": "/img/blank-remera.jpg"
+  },
+  {
+    "id": "12",
+    "name": "Combo personalizado a medida",
+    "category": "personalizados",
+    "description": "Contanos tu idea y lo armamos. Mayorista y minorista.",
+    "price": 0,
+    "image": "/img/ig-07.jpg"
+  },
+  {
+    "id": "13",
+    "name": "Vaso térmico personalizado",
+    "category": "personalizados",
+    "description": "Vaso térmico con tapa, sublimado full color con tu diseño.",
+    "price": 8000,
+    "image": "/img/producto-vaso-kaos.jpg",
+    "blank": "/img/blank-vaso.jpg"
+  }
+]

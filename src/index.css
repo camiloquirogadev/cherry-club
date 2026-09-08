@@ -1,29 +1,75 @@
-/* Asegurémonos de que Tailwind esté cargando los estilos */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* 🎨 Estilos globales para Cherry Club */
-html {
-  scroll-behavior: smooth;
+/* ═══════════════════════════════════════════════════════════
+   CHERRY CLUB — Dark Emo Theme 🍒
+   ═══════════════════════════════════════════════════════════ */
+
+html { scroll-behavior: smooth; }
+
+/* Respeta a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
 }
 
 body {
-  @apply bg-pink-50 text-gray-800 font-sans;
-  font-family: 'Inter', sans-serif;
+  @apply text-ink font-body;
+  font-weight: 400;
+  letter-spacing: .2px;
+  background:
+    radial-gradient(1100px 600px at 50% -10%, #1a0d16 0%, transparent 60%),
+    radial-gradient(700px 500px at 100% 100%, #150a12 0%, transparent 55%),
+    #08070a;
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
-/* Estilos globales de enlaces y botones */
-a {
-  @apply text-pink-700 hover:underline;
+a { @apply text-cherry-hi no-underline; }
+a:hover { @apply text-cherry-hi; }
+
+/* Foco visible accesible (teclado) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #ff2d55;
+  outline-offset: 2px;
+  border-radius: 8px;
 }
 
+/* Textura de grano encima de todo */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  opacity: .05; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#root { position: relative; z-index: 1; }
 
-.button {
-  @apply transition duration-300 ease-in-out transform hover:scale-105 hover:bg-pink-500;
+/* Componentes reutilizables */
+.btn-cherry {
+  @apply inline-block bg-cherry text-white font-body uppercase tracking-widest
+         text-sm py-3 px-7 rounded-full shadow-glow transition
+         hover:shadow-glowlg hover:brightness-95;
+}
+.btn-ghost {
+  @apply inline-block border border-night-line text-ink font-body uppercase tracking-widest
+         text-sm py-3 px-7 rounded-full transition hover:border-cherry hover:text-cherry-hi;
 }
 
 .card {
-  @apply transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg;
+  @apply transition duration-300 ease-in-out;
 }
 
+/* Scrollbar oscura */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0e0b10; }
+::-webkit-scrollbar-thumb { background: #2a1f2e; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #8b0a1a; }
