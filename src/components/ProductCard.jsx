@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useCart } from "../context/CartContext";
-import { imgFallback, money, placeholderFor } from "../utils/placeholder";
+import { asset, imgFallback, money, placeholderFor } from "../utils/placeholder";
 
 function ProductCard({ product }) {
   const { addToCart } = useCart();
@@ -33,7 +33,7 @@ function ProductCard({ product }) {
       {/* Imagen con antes/después (hover en desktop, tap en mobile) */}
       <Link to={`/producto/${product.id}`} className="block relative aspect-square overflow-hidden bg-night-600">
         <img
-          src={product.image || placeholderFor(product.category)}
+          src={product.image ? asset(product.image) : placeholderFor(product.category)}
           alt={product.name}
           loading="lazy"
           onError={imgFallback(product.category, product.id)}
@@ -43,7 +43,7 @@ function ProductCard({ product }) {
         {hasBlank && (
           <>
             <img
-              src={product.blank}
+              src={asset(product.blank)}
               alt={`${product.name} sin sublimar`}
               loading="lazy"
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500

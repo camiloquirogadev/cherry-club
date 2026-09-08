@@ -1,7 +1,7 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
-import { imgFallback, money, placeholderFor } from "../utils/placeholder";
+import { asset, imgFallback, money, placeholderFor } from "../utils/placeholder";
 
 const WHATSAPP = "5491168060403";
 
@@ -41,7 +41,7 @@ function Cart() {
           return (
             <li key={item.id} className="flex justify-between items-center gap-4 border-b border-night-line pb-4">
               <div className="flex items-center gap-3 min-w-0">
-                <img src={item.image || placeholderFor(item.category)} alt={item.name} onError={imgFallback(item.category, item.id)}
+                <img src={item.image ? asset(item.image) : placeholderFor(item.category)} alt={item.name} onError={imgFallback(item.category, item.id)}
                      className="w-16 h-16 rounded-lg object-cover bg-night-600 flex-shrink-0" />
                 <div className="min-w-0">
                   <h3 className="text-ink font-medium truncate">{item.name}</h3>

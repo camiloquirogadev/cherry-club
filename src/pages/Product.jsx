@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useProducts } from "../hooks/useProducts";
 import { useCart } from "../context/CartContext";
 import ProductCard from "../components/ProductCard";
-import { imgFallback, money, placeholderFor } from "../utils/placeholder";
+import { asset, imgFallback, money, placeholderFor } from "../utils/placeholder";
 
 const SIZES = {
   remeras: ["S", "M", "L", "XL", "XXL"],
@@ -32,7 +32,7 @@ function Product() {
     const ld = {
       "@context": "https://schema.org", "@type": "Product",
       name: product.name, description: product.description || "",
-      image: product.image ? new URL(product.image, window.location.origin).href : undefined,
+      image: product.image ? new URL(asset(product.image), window.location.origin).href : undefined,
       category: product.category, brand: { "@type": "Brand", name: "Cherry Club" },
     };
     if (product.price > 0) ld.offers = { "@type": "Offer", price: product.price, priceCurrency: "ARS", availability: "https://schema.org/InStock", url: window.location.href };
@@ -76,7 +76,7 @@ function Product() {
   };
   const copiar = async () => { try { await navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch (_) {} };
 
-  const currentImg = hasBlank && showBlank ? product.blank : (product.image || placeholderFor(product.category));
+  const currentImg = hasBlank && showBlank ? asset(product.blank) : (product.image ? asset(product.image) : placeholderFor(product.category));
 
   return (
     <div className="max-w-4xl mx-auto min-h-[60vh] px-6 py-6">

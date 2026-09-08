@@ -1,3 +1,12 @@
+// Antepone el base del sitio (/cherry-club/ en Pages, / en local) a las rutas
+// locales tipo "/img/foo.jpg". Deja intactas las URLs absolutas de Supabase
+// (http, data:, blob:), que ya vienen completas.
+export function asset(path) {
+  if (!path) return path;
+  if (/^(https?:|data:|blob:)/.test(path)) return path;
+  return import.meta.env.BASE_URL + path.replace(/^\//, "");
+}
+
 // Emoji por categoría y cadena de respaldo de imágenes.
 export const CAT_EMOJI = {
   remeras: "👕",

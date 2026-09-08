@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import companyWork from "../data/companyWork.json";
 import Reveal from "./Reveal";
+import { asset } from "../utils/placeholder";
 
 function Clients() {
   return (
@@ -28,7 +29,7 @@ function Clients() {
             className="group flex flex-col items-center gap-3 w-32 sm:w-40"
           >
             <img
-              src={w.image}
+              src={asset(w.image)}
               alt=""
               loading="lazy"
               className="w-28 h-28 sm:w-36 sm:h-36 rounded-full object-cover border border-night-line
