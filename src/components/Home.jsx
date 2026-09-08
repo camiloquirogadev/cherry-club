@@ -38,7 +38,7 @@ function Home() {
           </motion.h1>
           <p className="font-serif italic text-ink-dim mt-5 mb-8"
              style={{ fontSize: "clamp(18px,3vw,26px)" }}>
-            Diseños con actitud. Sangre, tinta y algodón.
+            Remeras, tazas, stickers y más, personalizados a pedido.
           </p>
           <div className="flex gap-3 justify-center flex-wrap">
             <Link to="/tienda" className="btn-cherry no-underline">Ver la tienda</Link>

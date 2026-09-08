@@ -6,7 +6,7 @@ import { cartWeightGrams, fetchQuote } from "../lib/shipping";
 import { supabase, SUPABASE_ENABLED } from "../lib/supabase";
 
 const WHATSAPP = "5491168060403";
-const CBU = "0000168300000003260502";
+// Solo el alias para la transferencia; el CBU se coordina por WhatsApp al confirmar.
 const ALIAS = "tienda.cherry.club";
 
 export default function Checkout() {
@@ -120,38 +120,16 @@ export default function Checkout() {
         </div>
 
         {entrega === "envio" && (
-          <div className="flex items-end gap-2 flex-wrap">
-            <div className="flex-1 min-w-[140px]">
-              <label className="block text-ink-dim text-xs mb-1" htmlFor="cp">Código postal</label>
-              <input id="cp" value={cp} onChange={(e) => setCp(e.target.value)} inputMode="numeric" placeholder="Ej: 1414"
-                     className="w-full p-2.5 rounded-lg bg-night-800 border border-night-line text-ink placeholder-ink-faint focus:border-cherry outline-none" />
-            </div>
-            <button onClick={calcularEnvio} disabled={quoting} className="btn-ghost">{quoting ? "Cotizando…" : "Calcular"}</button>
-          </div>
+          <p className="text-ink-faint text-xs">
+            El envío por Correo Argentino se cotiza según tu domicilio y lo coordinamos por WhatsApp al confirmar el pedido.
+          </p>
         )}
-
-        {entrega === "envio" && quote && (
-          <div className="mt-3 space-y-2">
-            {quote.rates.map((r, i) => (
-              <label key={i} className="flex items-center gap-2 text-ink-dim text-sm">
-                <input type="radio" name="rate" checked={rateIdx === i} onChange={() => setRateIdx(i)} />
-                <span className="capitalize">{r.tipo}</span>
-                {r.producto && <span className="text-ink-faint">· {r.producto}</span>}
-                <strong className="text-cherry-hi ml-auto">{money(r.price)}</strong>
-              </label>
-            ))}
-            <p className="text-ink-faint text-xs">
-              {quote.source === "correo" ? "Cotización Correo Argentino en vivo." : "Costo aproximado — se confirma al despachar."}
-            </p>
-          </div>
-        )}
-        {envioMsg && <p className="text-cherry-hi text-sm mt-2">{envioMsg}</p>}
       </div>
 
       {/* ── Totales ── */}
       <div className="text-ink-dim text-sm space-y-1 mb-4">
         <div className="flex justify-between"><span>Subtotal</span><span>{money(subtotal)}</span></div>
-        <div className="flex justify-between"><span>Envío</span><span>{entrega === "retiro" ? "Gratis" : (rate ? money(costoEnvio) : "a calcular")}</span></div>
+        <div className="flex justify-between"><span>Envío</span><span>{entrega === "retiro" ? "Gratis" : "a coordinar"}</span></div>
       </div>
       <p className="text-xl font-semibold text-ink mb-2">Total: <span className="text-cherry-hi">{money(total)}</span></p>
       <p className="text-xs text-ink-faint mb-6">🕒 Demora de producción estimada: 3 a 5 días hábiles. Envíos a todo el país.</p>
@@ -169,13 +147,10 @@ export default function Checkout() {
       ) : (
         <div className="bg-night-700 border border-night-line p-4 rounded-xl">
           <div className="flex items-center justify-between gap-2 mb-2">
-            <span className="text-ink-dim text-sm">CBU: <strong className="text-ink">{CBU}</strong></span>
-            <button onClick={() => copiar(CBU, "CBU")} className="text-xs border border-night-line rounded-lg px-2 py-1 text-ink-dim hover:text-cherry-hi hover:border-cherry-lo transition">Copiar</button>
-          </div>
-          <div className="flex items-center justify-between gap-2 mb-4">
             <span className="text-ink-dim text-sm">Alias: <strong className="text-ink">{ALIAS}</strong></span>
             <button onClick={() => copiar(ALIAS, "Alias")} className="text-xs border border-night-line rounded-lg px-2 py-1 text-ink-dim hover:text-cherry-hi hover:border-cherry-lo transition">Copiar</button>
           </div>
+          <p className="text-ink-faint text-xs mb-4">Te pasamos el CBU por WhatsApp al confirmar el pedido.</p>
           <button onClick={confirmarTransferencia} className="btn-cherry w-full text-center">Ya hice la transferencia</button>
         </div>
       )}
