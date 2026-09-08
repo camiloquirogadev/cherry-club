@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Cherry Club</title>
+  <script>
+    // GitHub Pages no conoce las rutas del SPA: guardo la URL pedida y vuelvo
+    // al index, que la restaura (ver el script en index.html).
+    sessionStorage.redirect = location.href;
+    location.replace('/cherry-club/');
+  </script>
+</head>
+<body></body>
+</html>
