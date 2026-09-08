@@ -3,4 +3,3 @@ dist/
 .env
 .cache/
 TODO.md
-.claude/
