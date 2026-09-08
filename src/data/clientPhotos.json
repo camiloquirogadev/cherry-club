@@ -1,0 +1,10 @@
+[
+  { "label": "Gorras Rick & Morty", "image": "/img/clientes-gorras.jpg" },
+  { "label": "Taza Doctor Who", "image": "/img/cliente-dalek.jpg" },
+  { "label": "Look Cherry Club", "image": "/img/ig-08.jpg" },
+  { "label": "Combo escolar", "image": "/img/ig-02.webp" },
+  { "label": "GQ Seguridad y Ambiente", "image": "/img/empresa-gq-taza.jpg" },
+  { "label": "Neko Mochilas", "image": "/img/empresa-neko.jpg" },
+  { "label": "Remera niños", "image": "/img/ig-11.jpg" },
+  { "label": "Vaso térmico", "image": "/img/producto-vaso-kaos.jpg" }
+]

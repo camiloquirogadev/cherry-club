@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Naza & Cami",
+    "handle": "clientes",
+    "text": "Las gorras de Rick & Morty quedaron increíbles, nos las ponemos siempre 🍒",
+    "image": "/img/clientes-gorras.jpg"
+  },
+  {
+    "name": "@__cestrumnocturnum",
+    "handle": "cliente",
+    "text": "Mi taza de Doctor Who es lo más, calidad total. Exterminate! ☕",
+    "image": "/img/cliente-dalek.jpg"
+  },
+  {
+    "name": "Meli",
+    "handle": "@meli.rz",
+    "text": "Las medias personalizadas 10/10 y llegaron al toque.",
+    "image": "/img/ig-06.webp"
+  },
+  {
+    "name": "Sofi",
+    "handle": "@sofi.mmm",
+    "text": "El combo escolar de mi nena quedó divino, re personalizado ❤️",
+    "image": "/img/ig-02.webp"
+  },
+  {
+    "name": "GQ Seguridad y Ambiente",
+    "handle": "empresa",
+    "text": "Tazas con su logo para todo el equipo.",
+    "image": "/img/empresa-gq-taza.jpg"
+  },
+  {
+    "name": "Neko Mochilas",
+    "handle": "empresa",
+    "text": "Merch de marca — tazas branded.",
+    "image": "/img/empresa-neko.jpg"
+  }
+]
