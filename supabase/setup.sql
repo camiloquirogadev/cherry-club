@@ -18,18 +18,26 @@ create table if not exists public.products (
 
 alter table public.products enable row level security;
 
--- Lectura pública (la tienda) / escritura solo autenticada (la dueña)
+-- Lectura pública (la tienda) / escritura solo para usuarios con
+-- app_metadata.role = 'admin'. Configurá ese claim en Authentication > Users.
 drop policy if exists "products public read" on public.products;
 create policy "products public read" on public.products for select using (true);
 
 drop policy if exists "products auth insert" on public.products;
-create policy "products auth insert" on public.products for insert to authenticated with check (true);
+drop policy if exists "products admin insert" on public.products;
+create policy "products admin insert" on public.products for insert to authenticated
+  with check ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
 drop policy if exists "products auth update" on public.products;
-create policy "products auth update" on public.products for update to authenticated using (true) with check (true);
+drop policy if exists "products admin update" on public.products;
+create policy "products admin update" on public.products for update to authenticated
+  using ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin')
+  with check ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
 drop policy if exists "products auth delete" on public.products;
-create policy "products auth delete" on public.products for delete to authenticated using (true);
+drop policy if exists "products admin delete" on public.products;
+create policy "products admin delete" on public.products for delete to authenticated
+  using ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
 -- 2) Bucket de imágenes (público para lectura)
 insert into storage.buckets (id, name, public)
@@ -40,13 +48,20 @@ drop policy if exists "images public read" on storage.objects;
 create policy "images public read" on storage.objects for select using (bucket_id = 'product-images');
 
 drop policy if exists "images auth insert" on storage.objects;
-create policy "images auth insert" on storage.objects for insert to authenticated with check (bucket_id = 'product-images');
+drop policy if exists "images admin insert" on storage.objects;
+create policy "images admin insert" on storage.objects for insert to authenticated
+  with check (bucket_id = 'product-images' and (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
 drop policy if exists "images auth update" on storage.objects;
-create policy "images auth update" on storage.objects for update to authenticated using (bucket_id = 'product-images');
+drop policy if exists "images admin update" on storage.objects;
+create policy "images admin update" on storage.objects for update to authenticated
+  using (bucket_id = 'product-images' and (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin')
+  with check (bucket_id = 'product-images' and (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
 drop policy if exists "images auth delete" on storage.objects;
-create policy "images auth delete" on storage.objects for delete to authenticated using (bucket_id = 'product-images');
+drop policy if exists "images admin delete" on storage.objects;
+create policy "images admin delete" on storage.objects for delete to authenticated
+  using (bucket_id = 'product-images' and (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
 -- 3) Carga inicial (los 12 productos actuales). Corré esto una sola vez.
 insert into public.products (name, category, description, price, image_url, featured) values

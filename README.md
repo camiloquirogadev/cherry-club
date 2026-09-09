@@ -50,6 +50,7 @@ Para que la dueña cargue y edite productos desde `/admin` sin tocar el código:
    políticas y carga los productos actuales).
 3. Crear el usuario de la dueña en Authentication → Users.
 4. Copiar `.env.example` a `.env` y completar `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY`.
+5. En Authentication → Users, asignar `app_metadata.role = "admin"` únicamente a la cuenta de la dueña.
 
 Sin `.env`, `/admin` avisa que falta configurar y la tienda sigue funcionando con el JSON local.
 
@@ -62,6 +63,10 @@ backend. Como opcionales hay dos Edge Functions de Supabase:
   sugiere WhatsApp/transferencia.
 - `cotizar-envio`: cotización real de Correo Argentino desde Moreno (CP 1744). Si no está,
   el checkout usa el estimador por zona de `src/lib/shipping.js` o el retiro en persona.
+
+Las Edge Functions validan precios contra Supabase y no aceptan precios enviados por el
+navegador. Configurá `SITE_ORIGIN` como secret de Supabase con el origen exacto del sitio
+publicado (por ejemplo `https://camiloquirogadev.github.io`).
 
 ## SEO
 

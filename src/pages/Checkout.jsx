@@ -41,7 +41,9 @@ export default function Checkout() {
   const handleMercadoPago = async () => {
     if (!SUPABASE_ENABLED) { showToast("Pago con tarjeta no activo — coordiná por WhatsApp/transferencia"); return; }
     try {
-      const { data, error } = await supabase.functions.invoke("crear-preferencia", { body: { items: cart, envio: costoEnvio } });
+      const { data, error } = await supabase.functions.invoke("crear-preferencia", {
+        body: { items: cart.map(({ id, quantity }) => ({ id, quantity })), envio: costoEnvio },
+      });
       if (error || !data || !data.init_point) { showToast((data && data.error) || "Pago con tarjeta no activo por ahora"); return; }
       window.location.href = data.init_point;
     } catch { showToast("Pago con tarjeta no activo por ahora"); }

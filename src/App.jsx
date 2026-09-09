@@ -1,20 +1,21 @@
-import React, { useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { MotionConfig } from "framer-motion";
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
 import { CartProvider } from "./context/CartContext";
-import Tienda from "./pages/Tienda";
-import Admin from "./pages/Admin";
-import Product from "./pages/Product";
-import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
-import ContactPage from "./pages/ContactPage";
-import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import BackToTop from "./components/BackToTop";
 import CartToast from "./components/CartToast";
+
+const Home = lazy(() => import("./components/Home"));
+const Tienda = lazy(() => import("./pages/Tienda"));
+const Admin = lazy(() => import("./pages/Admin"));
+const Product = lazy(() => import("./pages/Product"));
+const Cart = lazy(() => import("./pages/Cart"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Título por ruta (SEO / compartir). Product ajusta el suyo con el nombre.
 const TITLES = {
@@ -63,16 +64,18 @@ function App() {
         <ScrollManager />
         <Navbar />
         <main id="contenido">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/tienda" element={<Tienda />} />
-            <Route path="/producto/:id" element={<Product />} />
-            <Route path="/carrito" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/contacto" element={<ContactPage />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={<div className="p-10 text-center text-ink-dim">Cargando…</div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/tienda" element={<Tienda />} />
+              <Route path="/producto/:id" element={<Product />} />
+              <Route path="/carrito" element={<Cart />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/contacto" element={<ContactPage />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </main>
         <Footer />
         <WhatsAppButton />

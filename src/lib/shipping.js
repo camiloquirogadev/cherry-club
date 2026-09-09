@@ -45,7 +45,9 @@ export const ZONE_LABEL = {
 export function estimateShipping(cp, grams) {
   const zone = zoneForCP(cp);
   if (!zone) return null;
-  const kg = Math.max(0.5, grams / 1000);
+  const safeGrams = Number(grams);
+  if (!Number.isFinite(safeGrams) || safeGrams < 1 || safeGrams > 25000) return null;
+  const kg = Math.max(0.5, safeGrams / 1000);
   const r = RATES[zone];
   const cost = Math.round((r.base + r.perKg * kg) / 100) * 100;
   return { zone, label: ZONE_LABEL[zone], kg: Math.round(kg * 10) / 10, cost };

@@ -59,6 +59,12 @@ export default function Admin() {
 
   async function uploadOne(f, current) {
     if (!f) return current;
+    if (!["image/jpeg", "image/png", "image/webp"].includes(f.type)) {
+      throw new Error("Solo se permiten imágenes JPG, PNG o WebP.");
+    }
+    if (f.size > 5 * 1024 * 1024) {
+      throw new Error("Cada imagen debe pesar como máximo 5 MB.");
+    }
     const ext = f.name.split(".").pop();
     const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
     const { error } = await supabase.storage.from(IMAGES_BUCKET).upload(path, f, { upsert: true, cacheControl: "3600" });

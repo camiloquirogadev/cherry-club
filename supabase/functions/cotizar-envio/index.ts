@@ -12,26 +12,35 @@
 //
 // El front la llama con { cp, grams } y recibe { rates:[{tipo,producto,price,plazoMin,plazoMax}] }.
 
-const CORS = {
-  "Access-Control-Allow-Origin": "*",
+const ALLOWED_ORIGINS = (Deno.env.get("SITE_ORIGIN") || "https://camiloquirogadev.github.io,http://localhost:5173")
+  .split(",").map((value) => value.trim()).filter(Boolean);
+const corsHeaders = (origin: string | null) => ({
+  "Access-Control-Allow-Origin": origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0],
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
-};
+  "Vary": "Origin",
+});
 
 function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { ...CORS, "Content-Type": "application/json" },
+    headers: { ...corsHeaders(null), "Content-Type": "application/json" },
   });
 }
 
 Deno.serve(async (req) => {
-  if (req.method === "OPTIONS") return new Response("ok", { headers: CORS });
+  const headers = corsHeaders(req.headers.get("origin"));
+  if (req.method === "OPTIONS") return new Response("ok", { headers });
   if (req.method !== "POST") return json({ error: "Método no permitido" }, 405);
 
   try {
     const { cp, grams } = await req.json();
-    if (!cp) return json({ error: "Falta el código postal" }, 400);
+    const postalCode = String(cp || "").replace(/\D/g, "");
+    if (!/^\d{4}$/.test(postalCode)) return json({ error: "El código postal no es válido." }, 400);
+    const weightInput = Number(grams);
+    if (!Number.isFinite(weightInput) || weightInput < 1 || weightInput > 25000) {
+      return json({ error: "El peso del pedido no es válido." }, 400);
+    }
 
     const env = (Deno.env.get("CORREO_ENV") || "prod").toLowerCase();
     const base = env === "test"
@@ -61,7 +70,7 @@ Deno.serve(async (req) => {
     const body = {
       customerId: String(customerId),
       postalCodeOrigin: String(origin),
-      postalCodeDestination: String(cp).replace(/\D/g, ""),
+      postalCodeDestination: postalCode,
       dimensions: [{ weight, height: 15, width: 25, length: 30 }],
     };
     const ratesRes = await fetch(`${base}/rates`, {
@@ -70,8 +79,7 @@ Deno.serve(async (req) => {
       body: JSON.stringify(body),
     });
     if (!ratesRes.ok) {
-      const detail = (await ratesRes.text()).slice(0, 300);
-      return json({ error: "Cotización del Correo falló", detail }, 502);
+      return json({ error: "Cotización del Correo falló." }, 502);
     }
     const data = await ratesRes.json();
     const rates = (data.rates || []).map((r: any) => ({
@@ -82,7 +90,7 @@ Deno.serve(async (req) => {
       plazoMax: r.deliveryTimeMax,
     }));
     return json({ rates });
-  } catch (e) {
-    return json({ error: String(e) }, 500);
+  } catch {
+    return json({ error: "No se pudo cotizar el envío." }, 500);
   }
 });
